@@ -12,10 +12,9 @@ import Alamofire
 import Result
 
 
-class TesteHTMLReader {
+class SportHTMLReader {
     
     var news = [News]()
-    var i = 0
     
     private lazy var manager: Alamofire.Manager = {
         
@@ -35,11 +34,14 @@ class TesteHTMLReader {
     
     func getNewsFromURL(URL: NSURL, completion: ((Result<[News], NSError?>)  -> Void)){
         
-        manager.request(.GET, URL).responseString { (_, _, responseData, error) in
+        manager.request(.GET, URL).response { (_, _, responseData, error) in
             
-            if let stringData = responseData {
+            if let responseObject = responseData, stringData = NSString(data: responseObject, encoding: NSUTF8StringEncoding) as? String {
                 
                 let filtered = stringData.stringByReplacingOccurrencesOfString("<![CDATA[", withString: "").stringByReplacingOccurrencesOfString("]]>", withString: "")
+                
+                println("filtered -> \(filtered)")
+                
                 let document = HTMLDocument(string: filtered)
                 
                 let divHeadings = document.nodesMatchingSelector("item") as! [HTMLElement]
@@ -59,9 +61,7 @@ class TesteHTMLReader {
                             
                             if let e = element.firstNodeMatchingSelector("img"), imgPath = e.attributes["src"] as? String{
                                 println("imgPath - \(imgPath)")
-                                self.i++
-                                println(self.i)
-                                currentNews.imageURL = e.textContent
+                                currentNews.imageURL = imgPath
                             }
                             
                             if let e = element.firstNodeMatchingSelector("description") {
