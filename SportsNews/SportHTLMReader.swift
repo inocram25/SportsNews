@@ -23,8 +23,9 @@ class SportHTLMReader {
             
             var headers = Alamofire.Manager.defaultHTTPHeaders
             headers["Accept-Encoding"] = "gzip"
-            //headers["Content-Type"] = "application/json"
+            headers["Content-Type"] = "text/html; charset=utf-8"
             configuration.HTTPAdditionalHeaders = headers
+
             return configuration
             }()
         
@@ -42,37 +43,36 @@ class SportHTLMReader {
                 
                 if let divHeading = document.firstNodeMatchingSelector("item") {
                     
+                    var currentNews = News()
+                    
                     for htmlNode in divHeading.childElementNodes {
-                        //println("\nteste: \(htmlNode)")
+                        //println("\nHTMLContent: \(htmlNode.textContent) - HTMLnode: \(htmlNode)\n")
                         if let element = htmlNode as? HTMLElement {
                             
                             if let e = element.firstNodeMatchingSelector("title") {
-                                println("title - \(e.textContent)")
+                                //println("title - \(e.textContent)")
+                                currentNews.title = e.textContent
                             }
                             
-                            if let e = element.firstNodeMatchingSelector("img"){
-                                let imgPath = e.attributes["src"] as! String
-                                println("imgPath - \(imgPath)")
+                            if let e = element.firstNodeMatchingSelector("img"), imgPath = e.attributes["src"] as? String{
+                                //println("imgPath - \(imgPath)")
+                                currentNews.imageURL = imgPath
 
                             }
                             
                             if let e = element.firstNodeMatchingSelector("description") {
-                                println("description - \(e.textContent)")
+                                //println("description - \(e.textContent)")
+                                currentNews.text = e.textContent
                             }
                             
-                            /*if let e = element.firstNodeMatchingSelector("link") {
-                                println("\n\n\n\nlink\n\n\n - \(e)")
-                            }*/
-
-                            //var currentNews:News?
-                            //currentNews.title = ""
-                            //currentNews.text = ""
-                            //currentNews.imageURL = ""
+                            if let e = element.firstNodeMatchingSelector("guid") {
+                                //println("link -\(e.textContent)")
+                                currentNews.link = e.textContent
+                            }
                             
-                            //self.news.append(currentNews)
                         }
                     }
-                    
+                    self.news.append(currentNews)
                     completion(Result.success(self.news))
                 }
                 else {

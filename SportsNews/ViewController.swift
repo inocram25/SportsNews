@@ -16,19 +16,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        let xmlParser = SaxParser()
-        xmlParser.xmlURL = NSURL(string: "http://www.lancenet.com.br/rss/section/3/")
         
-        news = xmlParser.parseFeed as! [News]
-        
-        println("Titulo - \(news.first?.text)")*/
+//        let xmlParser = SaxParser()
+//        xmlParser.xmlURL = NSURL(string: "http://www.lancenet.com.br/rss/section/3/")
+//        
+//        news = xmlParser.parseFeed as! [News]
+//        
+//        println("Titulo - \(news.first?.text)")
         
 
         let url = NSURL(string: "http://www.lancenet.com.br/rss/section/3/")!
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            //
-            println("Fim")
+            
+            println("Finding news...")
+            
+            if let news = result.value {
+                for currentNews in news{
+                    println("Titulo da noticia - \(currentNews.title)")
+                }
+            }
+            else{
+                println("Error for getting news= \(result.error)")
+            }
         }
     }
 
