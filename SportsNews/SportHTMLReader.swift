@@ -40,7 +40,7 @@ class SportHTMLReader {
                 
                 let filtered = stringData.stringByReplacingOccurrencesOfString("<![CDATA[", withString: "").stringByReplacingOccurrencesOfString("]]>", withString: "")
                 
-                println("filtered -> \(filtered)")
+                //println("filtered -> \(filtered)")
                 
                 let document = HTMLDocument(string: filtered)
                 
@@ -60,7 +60,7 @@ class SportHTMLReader {
                             }
                             
                             if let e = element.firstNodeMatchingSelector("img"), imgPath = e.attributes["src"] as? String{
-                                println("imgPath - \(imgPath)")
+                                //println("imgPath - \(imgPath)")
                                 currentNews.imageURL = imgPath
                             }
                             
@@ -74,6 +74,10 @@ class SportHTMLReader {
                                 currentNews.link = e.textContent
                             }
                             
+                            if let e = element.firstNodeMatchingSelector("pubDate") {
+                                //println("pubDate \(e.textContent)")
+                                currentNews.pubDate = e.textContent
+                            }
                         }
                     }
                     self.news.append(currentNews)
