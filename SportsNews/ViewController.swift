@@ -18,24 +18,24 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
 //        let xmlParser = SaxParser()
-//        xmlParser.xmlURL = NSURL(string: "http://www.lancenet.com.br/rss/section/3/")
+//        xmlParser.xmlURL = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")
 //        
 //        news = xmlParser.parseFeed as! [News]
 //        
 //        println("Titulo - \(news.first?.text)")
         
         
-        let url = NSURL(string: "http://www.lancenet.com.br/rss/section/3/")!
+        let url = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")!
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
             
             if let news = result.value{
                 for n in news {
-                    println("\n")
-                    println("\n titulo - \(n.title)")
-                    println("\n image - \(n.imageURL)")
-                    println("\n texto - \(n.text)")
-                    println("\n link -\(n.link)")
-                    println("\n--------------------------------------------")
+//                    println("\n")
+//                    println("\n titulo - \(n.title)")
+//                    println("\n image - \(n.imageURL)")
+//                    println("\n texto - \(n.text)")
+//                    println("\n link -\(n.link)")
+//                    println("\n--------------------------------------------")
                     
                 }
             }

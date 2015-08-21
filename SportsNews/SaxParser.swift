@@ -52,14 +52,13 @@ class SaxParser: NSObject, NSXMLParserDelegate {
             currentNews?.link = xmlText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         
-        if elementName == "description"
+        if elementName == "content:encoded"
         {
             currentNews?.text = xmlText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         
         if elementName == "item"
         {
-            println(self.currentNews?.title)
             news.append(self.currentNews!)
         }
         

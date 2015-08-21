@@ -55,31 +55,37 @@ class SportHTMLReader {
                         if let element = htmlNode as? HTMLElement {
                             
                             if let e = element.firstNodeMatchingSelector("title") {
-                                //println("title - \(e.textContent)")
-                                currentNews.title = e.textContent
+                               // println("title - \(e.textContent)\n")
+                                //currentNews.title = e.textContent
                             }
                             
                             if let e = element.firstNodeMatchingSelector("img"), imgPath = e.attributes["src"] as? String{
-                                //println("imgPath - \(imgPath)")
-                                currentNews.imageURL = imgPath
+                                //println("imgPath - \(imgPath)\n")
+                                //currentNews.imageURL = imgPath
                             }
                             
                             if let e = element.firstNodeMatchingSelector("description") {
-                                //println("description - \(e.textContent)")
-                                currentNews.text = e.textContent
+                                //println("description - \(e.textContent)\n")
+                                //currentNews.text = e.textContent
                             }
                             
                             if let e = element.firstNodeMatchingSelector("guid") {
-                                //println("link -\(e.textContent)")
-                                currentNews.link = e.textContent
+                                //println("link -\(e.textContent)\n")
+                                //currentNews.link = e.textContent
                             }
                             
                             if let e = element.firstNodeMatchingSelector("pubDate") {
-                                //println("pubDate \(e.textContent)")
-                                currentNews.pubDate = e.textContent
+                                //println("pubDate \(e.textContent)\n")
+                                //currentNews.pubDate = e.textContent
+                            }
+                            
+                            if let e = element.firstNodeMatchingSelector("content") {
+                                println("Texto \(e.textContent)\n")
+                                //currentNews.pubDate = e.textContent
                             }
                         }
                     }
+                    println("----------------------------------------")
                     self.news.append(currentNews)
                 }
                 
