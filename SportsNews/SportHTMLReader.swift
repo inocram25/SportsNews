@@ -72,6 +72,7 @@ class SportHTMLReader {
                             if let e = element.firstNodeMatchingSelector("guid") {
                                 //println("link -\(e.textContent)\n")
                                 //currentNews.link = e.textContent
+                                //a
                             }
                             
                             if let e = element.firstNodeMatchingSelector("pubDate") {
