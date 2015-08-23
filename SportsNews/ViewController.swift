@@ -30,17 +30,11 @@ class ViewController: UIViewController {
             
             if let news = result.value{
                 for n in news {
-//                    println("\n")
-//                    println("\n titulo - \(n.title)")
-//                    println("\n image - \(n.imageURL)")
-//                    println("\n texto - \(n.text)")
-//                    println("\n link -\(n.link)")
-//                    println("\n--------------------------------------------")
-                    
+                    println(n.textComp.componentsSeparatedByString("content:encoded")[1])
+                println("##########################################################################################################")
                 }
             }
         }
     }
-
 }
 

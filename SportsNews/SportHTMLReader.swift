@@ -40,65 +40,49 @@ class SportHTMLReader {
                 
                 let filtered = stringData.stringByReplacingOccurrencesOfString("<![CDATA[", withString: "").stringByReplacingOccurrencesOfString("]]>", withString: "")
                 
-                //println("filtered -> \(filtered)")
-                
                 let document = HTMLDocument(string: filtered)
                 
                 let divHeadings = document.nodesMatchingSelector("item") as! [HTMLElement]
                 
+                
                 for div in divHeadings {
                     
                     var currentNews = News()
-                    
+                    currentNews.textComp = ""
                     for htmlNode in div.childElementNodes {
-                        //println("\nHTMLContent: \(htmlNode.textContent) - HTMLnode: \(htmlNode)\n")
+                        currentNews.textComp = currentNews.textComp.stringByAppendingString("\(htmlNode.tagName)\n")
+                        currentNews.textComp = currentNews.textComp.stringByAppendingString(htmlNode.textContent)
+                        currentNews.textComp = currentNews.textComp.stringByAppendingString("\n\(htmlNode.tagName)\n")
+                       
                         if let element = htmlNode as? HTMLElement {
-                            
                             if let e = element.firstNodeMatchingSelector("title") {
-                               // println("title - \(e.textContent)\n")
-                                //currentNews.title = e.textContent
+                                currentNews.title = e.textContent
                             }
                             
                             if let e = element.firstNodeMatchingSelector("img"), imgPath = e.attributes["src"] as? String{
-                                //println("imgPath - \(imgPath)\n")
-                                //currentNews.imageURL = imgPath
+                                currentNews.imageURL = imgPath
                             }
                             
                             if let e = element.firstNodeMatchingSelector("description") {
-                                //println("description - \(e.textContent)\n")
-                                //currentNews.text = e.textContent
+                                currentNews.text = e.textContent
                             }
                             
                             if let e = element.firstNodeMatchingSelector("guid") {
-                                //println("link -\(e.textContent)\n")
-                                //currentNews.link = e.textContent
-                                //a
+                                currentNews.link = e.textContent
                             }
                             
                             if let e = element.firstNodeMatchingSelector("pubDate") {
-                                //println("pubDate \(e.textContent)\n")
-                                //currentNews.pubDate = e.textContent
-                            }
-                            
-                            if let e = element.firstNodeMatchingSelector("content") {
-                                println("Texto \(e.textContent)\n")
-                                //currentNews.pubDate = e.textContent
+                                currentNews.pubDate = e.textContent
                             }
                         }
                     }
-                    println("----------------------------------------")
                     self.news.append(currentNews)
                 }
-                
                 completion(Result.success(self.news))
-                
-            }
-            else {
+            }else {
                 completion(Result.failure(error))
                 println("error parsing responseData")
             }
         }
-        
-        
     }
 }

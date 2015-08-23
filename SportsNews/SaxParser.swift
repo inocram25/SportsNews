@@ -55,6 +55,7 @@ class SaxParser: NSObject, NSXMLParserDelegate {
         if elementName == "content:encoded"
         {
             currentNews?.text = xmlText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            println(currentNews?.text)
         }
         
         if elementName == "item"

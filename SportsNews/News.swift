@@ -15,4 +15,5 @@ class News: NSObject {
     var text:String!
     var imageURL:String!
     var pubDate:String!
+    var textComp:String!
 }
