@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1CC44CFE-8AF3-4B54-943E-8A17330BA2AE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SportsNews</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3B064E00CA3515FD5304ACBDDFB6B99F9FF8D2F1</key>
+		<string>github.com:inocram25/SportsNews.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SportsNews.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3B064E00CA3515FD5304ACBDDFB6B99F9FF8D2F1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:inocram25/SportsNews.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3B064E00CA3515FD5304ACBDDFB6B99F9FF8D2F1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3B064E00CA3515FD5304ACBDDFB6B99F9FF8D2F1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SportsNews</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -41,18 +41,17 @@ class SportHTMLReader {
                 let filtered = stringData.stringByReplacingOccurrencesOfString("<![CDATA[", withString: "").stringByReplacingOccurrencesOfString("]]>", withString: "")
                 
                 let document = HTMLDocument(string: filtered)
-                
                 let divHeadings = document.nodesMatchingSelector("item") as! [HTMLElement]
-                
                 
                 for div in divHeadings {
                     
                     var currentNews = News()
-                    currentNews.textComp = ""
+                    var newsBody = ""
+                    
                     for htmlNode in div.childElementNodes {
-                        currentNews.textComp = currentNews.textComp.stringByAppendingString("\(htmlNode.tagName)\n")
-                        currentNews.textComp = currentNews.textComp.stringByAppendingString(htmlNode.textContent)
-                        currentNews.textComp = currentNews.textComp.stringByAppendingString("\n\(htmlNode.tagName)\n")
+                        newsBody = newsBody.stringByAppendingString("\(htmlNode.tagName)\n")
+                        newsBody = newsBody.stringByAppendingString(htmlNode.textContent)
+                        newsBody = newsBody.stringByAppendingString("\n\(htmlNode.tagName)\n")
                        
                         if let element = htmlNode as? HTMLElement {
                             if let e = element.firstNodeMatchingSelector("title") {
@@ -76,6 +75,7 @@ class SportHTMLReader {
                             }
                         }
                     }
+                    currentNews.textComp = newsBody.componentsSeparatedByString("content:encoded")[1]
                     self.news.append(currentNews)
                 }
                 completion(Result.success(self.news))
