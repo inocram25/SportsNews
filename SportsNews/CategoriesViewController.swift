@@ -23,14 +23,15 @@ class CategoriesViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showSubCategories" {
+            let title = sender as! String
+            let vc = segue.destinationViewController as! SubCatViewController
+            vc.selectedCategory = title
+        }
     }
-    */
 
 }

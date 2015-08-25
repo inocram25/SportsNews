@@ -27,21 +27,45 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         let identifier = "categoryCustomCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! CategoryCustomCell
         
-        cell.imageView.image = UIImage(named:categories[indexPath.row])
+        //cell.imageView.image = UIImage(named:categories[indexPath.row])
+        cell.imageView.image = UIImage(named: "test")
+        cell.imageView.layer.borderWidth = 1
+        cell.imageView.layer.masksToBounds = false
+        cell.imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2
+        cell.imageView.clipsToBounds = true
+        
         cell.titleLabel.text = categories[indexPath.row]
         
         return cell
     }
     
     
-    /*func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    
-    
-    }*/
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        
+        let title = (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCustomCell).titleLabel.text
+        performSegueWithIdentifier("showSubCategories", sender: title)
+    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSize(width: 100, height: 180.0)
+        return CGSize(width: 128.0, height: 128.0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let border = flowLayout.sectionInset.left + flowLayout.sectionInset.right
+        let itemWidth = flowLayout.itemSize.width + flowLayout.minimumInteritemSpacing
+        let totalWidth = collectionView.bounds.width - border
+        let numberOfCells = floor(totalWidth / itemWidth)
+        let usedSpace = itemWidth * numberOfCells
+        let bonusSpace = flowLayout.minimumInteritemSpacing * numberOfCells
+        
+        let edgeInsets = floor((totalWidth - usedSpace + bonusSpace) / (numberOfCells + 1.0))
+        
+        return UIEdgeInsets(top: flowLayout.sectionInset.top, left: edgeInsets, bottom: flowLayout.sectionInset.bottom, right: edgeInsets)
     }
     
 }

@@ -17,19 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         
-        let attrs = [NSForegroundColorAttributeName:UIColor.blackColor()]
+        let attrs = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
+        //Navigation Bar
         let appearanceNavigationBar = UINavigationBar.appearance()
-        //appearanceNavigationBar.barTintColor = UIColor.blackColor()
+        appearanceNavigationBar.barTintColor = UIColor.blackColor()
         appearanceNavigationBar.titleTextAttributes = attrs
-        appearanceNavigationBar.tintColor = UIColor.blackColor()
+        appearanceNavigationBar.tintColor = UIColor.whiteColor()
         
+        //Tab Bar
         let appearanceTabBar = UITabBar.appearance()
         appearanceTabBar.barTintColor = UIColor.news_darkGrayColor()
         
+        //Tab Bar item
         let appearanceTabBarItem = UITabBarItem.appearance()
         appearanceTabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState:.Normal)
         appearanceTabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState:.Selected)
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
         return true
     }
