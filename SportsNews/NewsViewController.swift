@@ -13,16 +13,24 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var scrowView: UIScrollView!
     var news: News?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //for hidden load layer
 
         if let n = news {
             titleLabel.text = n.title
             imageView.pin_setImageFromURL(NSURL(string: n.imageURL))
             textView.text = n.textComp
         }
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        self.navigationController?.navigationBarHidden = false
     }
 
 

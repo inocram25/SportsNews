@@ -12,6 +12,11 @@ class CategoriesViewController: UIViewController {
         
     let categories = ["Futebol","Basquete","Ciclismo","Atletismo","Corrida","Natacao","Tenis","Volei","Outros"]
     
+    override func viewWillAppear(animated: Bool)
+    {
+        self.navigationController?.navigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

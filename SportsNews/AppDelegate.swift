@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Navigation Bar
         let appearanceNavigationBar = UINavigationBar.appearance()
-        appearanceNavigationBar.barTintColor = UIColor.blackColor()
+        appearanceNavigationBar.barTintColor = UIColor.darkGrayColor()
         appearanceNavigationBar.titleTextAttributes = attrs
         appearanceNavigationBar.tintColor = UIColor.whiteColor()
         

@@ -14,19 +14,53 @@ class HomeViewController: UIViewController {
     let sportHTMLReader = SportHTMLReader()
     var news = [News]()
     
+    @IBOutlet weak var iconView: UIView!
+    @IBOutlet weak var imageIcon: UIImageView!
+    @IBOutlet weak var load: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //set hide navigation bar
+    override func viewWillAppear(animated: Bool)
+    {
+        self.navigationController?.navigationBarHidden = true
+        
+        UIView.animateWithDuration(0.7, delay: 0.3,
+            options: .Repeat | .Autoreverse, animations: {
+                self.iconView.alpha = 0
+            }, completion: nil)
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //for load animated
+        load.layer.hidden = false
+        load.startAnimating()
         
         let url = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")!
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
             
             if let n = result.value{
                 self.news = n
+                
+                if self.news.count != 0 {
+                    //for stop animated
+                    self.load.layer.hidden = true
+                    self.load.stopAnimating()
+                    self.imageIcon.layer.hidden = true
+                }
                 self.collectionView.reloadData()
+                
+                   
+                
+                
             }
+            
+        
         }
+        
         
     }
     

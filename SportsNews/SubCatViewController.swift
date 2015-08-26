@@ -17,6 +17,11 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var selectedCategory: String?
     var vetSubCat = [String]()
     
+    override func viewWillAppear(animated: Bool)
+    {
+        self.navigationController?.navigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

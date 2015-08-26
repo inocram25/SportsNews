@@ -31,7 +31,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         cell.imageView.image = UIImage(named: "test")
         cell.imageView.layer.borderWidth = 1
         cell.imageView.layer.masksToBounds = false
-        cell.imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.imageView.layer.borderColor = UIColor.redColor().CGColor
         cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2
         cell.imageView.clipsToBounds = true
         
@@ -50,7 +50,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSize(width: 128.0, height: 128.0)
+        return CGSize(width: 160.0, height: 160.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAtIndex section: Int) -> UIEdgeInsets {
@@ -63,7 +63,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         let usedSpace = itemWidth * numberOfCells
         let bonusSpace = flowLayout.minimumInteritemSpacing * numberOfCells
         
-        let edgeInsets = floor((totalWidth - usedSpace + bonusSpace) / (numberOfCells + 1.0))
+        let edgeInsets = floor((totalWidth - usedSpace + bonusSpace) / (numberOfCells + 4.0))
         
         return UIEdgeInsets(top: flowLayout.sectionInset.top, left: edgeInsets, bottom: flowLayout.sectionInset.bottom, right: edgeInsets)
     }
