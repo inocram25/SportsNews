@@ -30,6 +30,9 @@
 		9AF0AEA91B8CDE7F005C93E9 /* SubCatCustonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEA81B8CDE7F005C93E9 /* SubCatCustonCell.swift */; };
 		9AF0AEAB1B8CE19B005C93E9 /* SubCatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEAA1B8CE19B005C93E9 /* SubCatViewController.swift */; };
 		9AF0AEAD1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEAC1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift */; };
+		B37597C21B8E346C00D47F07 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37597C11B8E346C00D47F07 /* FeedViewController.swift */; };
+		B37597C61B8E3BA800D47F07 /* FeedViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37597C51B8E3BA800D47F07 /* FeedViewController+CollectionView.swift */; };
+		B37597C81B8E3EA600D47F07 /* FeedCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37597C71B8E3EA600D47F07 /* FeedCustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		9AF0AEA81B8CDE7F005C93E9 /* SubCatCustonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCatCustonCell.swift; sourceTree = "<group>"; };
 		9AF0AEAA1B8CE19B005C93E9 /* SubCatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCatViewController.swift; sourceTree = "<group>"; };
 		9AF0AEAC1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubCatViewController+TableViewController.swift"; sourceTree = "<group>"; };
+		B37597C11B8E346C00D47F07 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		B37597C51B8E3BA800D47F07 /* FeedViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		B37597C71B8E3EA600D47F07 /* FeedCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCustomCell.swift; sourceTree = "<group>"; };
 		D7D0015B951BD65313DDB8E5 /* Pods-SportsNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsNews.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsNews/Pods-SportsNews.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +172,7 @@
 		9AA1D6AA1B837E6100AEE046 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B37597BC1B8E312300D47F07 /* Feed */,
 				9ADE42ED1B8CBAB70036118D /* General */,
 				9AA4EBEA1B8B919F00FE449B /* Categories */,
 				9AA4EBD71B8B75AC00FE449B /* Home */,
@@ -177,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA4EBDC1B8B76AF00FE449B /* HomeCustomCell.swift */,
+				B37597C71B8E3EA600D47F07 /* FeedCustomCell.swift */,
 				9AA4EBDF1B8B7A2000FE449B /* BorderedView.swift */,
 				9AA4EBE81B8B908E00FE449B /* CategoryCustomCell.swift */,
 				9AF0AEA81B8CDE7F005C93E9 /* SubCatCustonCell.swift */,
@@ -230,6 +238,15 @@
 				9ADE42EE1B8CBAF70036118D /* NewsViewController.swift */,
 			);
 			name = General;
+			sourceTree = "<group>";
+		};
+		B37597BC1B8E312300D47F07 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				B37597C11B8E346C00D47F07 /* FeedViewController.swift */,
+				B37597C51B8E3BA800D47F07 /* FeedViewController+CollectionView.swift */,
+			);
+			name = Feed;
 			sourceTree = "<group>";
 		};
 		C30232977EA4ECAE8EA656CE /* Frameworks */ = {
@@ -393,6 +410,7 @@
 			files = (
 				9AA4EBDB1B8B767F00FE449B /* HomeViewController+CollectionView.swift in Sources */,
 				9AA4EBE01B8B7A2000FE449B /* BorderedView.swift in Sources */,
+				B37597C21B8E346C00D47F07 /* FeedViewController.swift in Sources */,
 				9AA4EBE21B8B7B3700FE449B /* CustomTabBarController.swift in Sources */,
 				9ADE42EF1B8CBAF70036118D /* NewsViewController.swift in Sources */,
 				9AF0AEAD1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift in Sources */,
@@ -408,6 +426,8 @@
 				9AA4EBD91B8B75C300FE449B /* HomeViewController.swift in Sources */,
 				9AF0AEAB1B8CE19B005C93E9 /* SubCatViewController.swift in Sources */,
 				9AA4EBEC1B8B91E800FE449B /* CategoriesViewController.swift in Sources */,
+				B37597C81B8E3EA600D47F07 /* FeedCustomCell.swift in Sources */,
+				B37597C61B8E3BA800D47F07 /* FeedViewController+CollectionView.swift in Sources */,
 				9AF0AEA91B8CDE7F005C93E9 /* SubCatCustonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

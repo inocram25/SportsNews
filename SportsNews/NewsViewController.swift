@@ -13,7 +13,6 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var scrowView: UIScrollView!
     var news: News?
     
     override func viewDidLoad() {
@@ -26,6 +25,9 @@ class NewsViewController: UIViewController {
             imageView.pin_setImageFromURL(NSURL(string: n.imageURL))
             textView.text = n.textComp
         }
+        
+        // desativar ajuste automatico scrollview
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewWillAppear(animated: Bool)
