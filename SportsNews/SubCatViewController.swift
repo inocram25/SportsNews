@@ -17,8 +17,7 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var selectedCategory: String?
     var vetSubCat = [String]()
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
     }
     
@@ -27,18 +26,14 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         if selectedCategory == "Futebol" {
             label.text = selectedCategory
-            vetSubCat = ["brasil","libertadores"]
+            vetSubCat = ["Palmeiras","Sao Paulo"]
         }
 
-        // Do any additional setup after loading the view.
+        imageView.image = UIImage(named: "Futebol")
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.masksToBounds = false
+        imageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
 
     /*
     // MARK: - Navigation

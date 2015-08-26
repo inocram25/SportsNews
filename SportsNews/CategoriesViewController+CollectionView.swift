@@ -27,8 +27,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         let identifier = "categoryCustomCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! CategoryCustomCell
         
-        //cell.imageView.image = UIImage(named:categories[indexPath.row])
-        cell.imageView.image = UIImage(named: "test")
+        cell.imageView.image = UIImage(named:categories[indexPath.row])
         cell.imageView.layer.borderWidth = 1
         cell.imageView.layer.masksToBounds = false
         cell.imageView.layer.borderColor = UIColor.redColor().CGColor
@@ -44,8 +43,13 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         
-        let title = (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCustomCell).titleLabel.text
-        performSegueWithIdentifier("showSubCategories", sender: title)
+        if indexPath.row < 2{
+            let title = (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCustomCell).titleLabel.text
+            performSegueWithIdentifier("showSubCategories", sender: title)
+        }
+        else{
+            
+        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

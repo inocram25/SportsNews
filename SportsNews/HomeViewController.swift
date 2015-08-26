@@ -28,8 +28,6 @@ class HomeViewController: UIViewController {
             options: .Repeat | .Autoreverse, animations: {
                 self.iconView.alpha = 0
             }, completion: nil)
-        
-        
     }
     
     override func viewDidLoad() {
@@ -52,16 +50,8 @@ class HomeViewController: UIViewController {
                     self.imageIcon.layer.hidden = true
                 }
                 self.collectionView.reloadData()
-                
-                   
-                
-                
             }
-            
-        
         }
-        
-        
     }
     
     // MARK: - Navigation
