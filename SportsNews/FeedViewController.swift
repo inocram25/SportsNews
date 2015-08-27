@@ -15,22 +15,26 @@ class FeedViewController: UIViewController {
     var news = [News]()
     var selectedCategory:String?
     var url:NSURL!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var favorites = [String]()
+    
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //self.navigationController?.navigationBarHidden = false
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
         
         if let selected = selectedCategory{
             urlFromSelecetedCategory()
         }else{
-            //TO-DO: Show My Feeds
+            let test = defaults.objectForKey("favorites") as? NSData
+            if let x = test{
+                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(x) as? [AnyObject]
+                println(urls)
+            }
+            
             url = NSURL(string: "http://www.gazetaesportiva.net/categoria/futebol-internacional/feed/")
         }
         
@@ -45,6 +49,11 @@ class FeedViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
     
     func urlFromSelecetedCategory(){
@@ -74,6 +83,11 @@ class FeedViewController: UIViewController {
     
     @IBAction func favouriteTapped(sender: AnyObject) {
         self.favoriteBarButton.tintColor = UIColor.redColor()
+        
+        favorites.append("\(url)")
+        let dataArray = NSKeyedArchiver.archivedDataWithRootObject(favorites)
+        defaults.setObject(dataArray, forKey: "favorites")
+        defaults.synchronize()
     }
 
     // MARK: - Navigation
