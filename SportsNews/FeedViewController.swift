@@ -29,9 +29,9 @@ class FeedViewController: UIViewController {
         if let selected = selectedCategory{
             urlFromSelecetedCategory()
         }else{
-            let test = defaults.objectForKey("favorites") as? NSData
-            if let x = test{
-                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(x) as? [AnyObject]
+            let data = defaults.objectForKey("favorites") as? NSData
+            if let data = data{
+                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [AnyObject]
                 println(urls)
             }
             
@@ -83,6 +83,11 @@ class FeedViewController: UIViewController {
     
     @IBAction func favouriteTapped(sender: AnyObject) {
         self.favoriteBarButton.tintColor = UIColor.redColor()
+        let data = defaults.objectForKey("favorites") as? NSData
+        if let data = data{
+            favorites = (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String])!
+            println("aoba \(favorites)")
+        }
         
         favorites.append("\(url)")
         let dataArray = NSKeyedArchiver.archivedDataWithRootObject(favorites)
