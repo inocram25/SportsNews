@@ -10,15 +10,13 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
         
-    let categories = ["Futebol","Basquete","Ciclismo","Atletismo","Corrida","Natacao","Tenis","Volei","Outros"]
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    override func viewWillAppear(animated: Bool)
-    {
-        self.navigationController?.navigationBarHidden = true
-    }
+    let categories = ["Futebol","Basquete","Ciclismo","Atletismo","Corrida","Natacao","Tenis","Volei","Outros"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "light_pattern")!)
         // Do any additional setup after loading the view.
     }
 
@@ -35,6 +33,11 @@ class CategoriesViewController: UIViewController {
         if segue.identifier == "showSubCategories" {
             let title = sender as! String
             let vc = segue.destinationViewController as! SubCatViewController
+            vc.selectedCategory = title
+        }
+        if segue.identifier == "showCategoryNews" {
+            let title = sender as! String
+            let vc = segue.destinationViewController as! FeedViewController
             vc.selectedCategory = title
         }
     }

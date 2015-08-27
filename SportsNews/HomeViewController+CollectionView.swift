@@ -28,8 +28,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! HomeCustomCell
         
         cell.titleLabel.text = news[indexPath.row].title
-        let url = NSURL(string:news[indexPath.row].imageURL)
-        cell.imageView.pin_setImageFromURL(url)
+        
+        if let urlString = news[indexPath.row].imageURL{
+            cell.imageView.pin_setImageFromURL(NSURL(string: urlString), placeholderImage: UIImage(named: "placeholder"))
+        }else{
+            cell.imageView.image = UIImage(named: "placeholder")
+        }
         
         return cell
     }

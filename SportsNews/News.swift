@@ -13,7 +13,7 @@ class News: NSObject {
     var title:String!
     var link:String!
     var text:String!
-    var imageURL:String!
+    var imageURL:String?
     var pubDate:String!
     var textComp:String!
 }

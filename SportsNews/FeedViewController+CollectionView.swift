@@ -28,8 +28,9 @@ extension FeedViewController : UICollectionViewDelegateFlowLayout, UICollectionV
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! FeedCustomCell
         
         cell.titleLabel.text = news[indexPath.row].title
-        let url = NSURL(string:news[indexPath.row].imageURL)
-        cell.imageView.pin_setImageFromURL(url)
+        if let urlString = news[indexPath.row].imageURL{
+            cell.imageView.pin_setImageFromURL(NSURL(string: urlString), placeholderImage: UIImage(named: "placeholder"))
+        }
         
         return cell
     }
@@ -38,7 +39,7 @@ extension FeedViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let selectedNews = news[indexPath.row]
-        performSegueWithIdentifier("readNews", sender: selectedNews)
+        performSegueWithIdentifier("readNewsFromMyFeed", sender: selectedNews)
         
     }
     
@@ -46,6 +47,6 @@ extension FeedViewController : UICollectionViewDelegateFlowLayout, UICollectionV
         
         let widht = UIScreen.mainScreen().bounds.size.width
         
-        return indexPath.row % 3 == 0 ? CGSize(width: widht, height: 180.0) : CGSize(width: widht/2, height: 180.0)
+        return CGSize(width: widht, height: 180.0)
     }
 }

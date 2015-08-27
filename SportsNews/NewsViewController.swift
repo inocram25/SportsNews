@@ -22,7 +22,9 @@ class NewsViewController: UIViewController {
 
         if let n = news {
             titleLabel.text = n.title
-            imageView.pin_setImageFromURL(NSURL(string: n.imageURL))
+            if let urlString = n.imageURL{
+                imageView.pin_setImageFromURL(NSURL(string: urlString))
+            }
             textView.text = n.textComp
         }
         

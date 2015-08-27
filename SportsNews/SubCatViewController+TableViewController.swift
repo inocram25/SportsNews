@@ -24,12 +24,12 @@ extension SubCatViewController: UITableViewDataSource, UITableViewDelegate {
         
         let subCategoryName = vetSubCat[indexPath.row]
         cell.label.text = subCategoryName
-        cell.iconView.image = UIImage(named: "test")
+        cell.iconView.image = UIImage(named: "SaoPaulo")
         //cell.iconView.layer.borderWidth = 1
-        cell.iconView.layer.masksToBounds = false
+        //cell.iconView.layer.masksToBounds = false
         //cell.iconView.layer.borderColor = UIColor.redColor().CGColor
-        cell.iconView.layer.cornerRadius = cell.iconView.frame.size.width / 2
-        cell.iconView.clipsToBounds = true
+        //cell.iconView.layer.cornerRadius = cell.iconView.frame.size.width / 2
+        //cell.iconView.clipsToBounds = true
         
         
         return cell

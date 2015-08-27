@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     //set hide navigation bar
     override func viewWillAppear(animated: Bool)
     {
-        self.navigationController?.navigationBarHidden = true
+        navigationController?.navigationBarHidden = true
         
         UIView.animateWithDuration(0.7, delay: 0.3,
             options: .Repeat | .Autoreverse, animations: {
