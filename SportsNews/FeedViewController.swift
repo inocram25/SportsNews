@@ -22,12 +22,20 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        println("WARNING!")
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let selected = selectedCategory{
-            urlFromSelecetedCategory()
+        let baseURL = "http://www.gazetaesportiva.net/categoria/"
+        
+        if let selected = selectedCategory?.lowercaseString{
+            url = NSURL(string:baseURL + selected + "/feed/")
+            
         }else{
             let data = defaults.objectForKey("favorites") as? NSData
             if let data = data{
@@ -56,37 +64,12 @@ class FeedViewController: UIViewController {
         collectionView.addSubview(refresh)
         
     }
-    
-    func urlFromSelecetedCategory(){
-        
-        if selectedCategory == "Volei"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/volei/feed/")!
-        }
-        else if selectedCategory == "Ciclismo"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/ciclismo/feed/")!
-        }
-        else if selectedCategory == "Atletismo"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/atletismo/feed/")!
-        }
-        else if selectedCategory == "Natacao"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/natacao/feed/")!
-        }
-        else if selectedCategory == "Corrida"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/corrida-e-caminhada/feed/")!
-        }
-        else if selectedCategory == "Tenis"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")!
-        }
-        else if selectedCategory == "Outros"{
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/outros/feed/")!
-        }
-    }
-    
+
     // MARK: - Refresh
     func refreshNews(){
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            if let n = result.value{
-                self.news = n
+            if let news = result.value{
+                self.news = news
                 self.collectionView.reloadData()
                 self.refresh.endRefreshing()
             }

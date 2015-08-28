@@ -17,6 +17,11 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var selectedCategory: String?
     var vetSubCat = [String]()
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        println("WARNING!")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
         self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "darkSports_pattern")!)
@@ -42,12 +47,8 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     "Sampaio Correa","Santa Cruz","Santos",
                     "Sao Paulo","Sport Club","Vasco","Vila Nova","Vitoria"]
         }
-        //TO-DO: fazer as subcateogiras corretamente.
 
         imageView.image = UIImage(named: "Futebol")
-//        imageView.layer.borderWidth = 0.5
-//        imageView.layer.masksToBounds = false
-//        imageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
     /*

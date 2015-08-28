@@ -13,12 +13,10 @@ import PINRemoteImage
 extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return categories.count
     }
     
@@ -27,6 +25,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         let identifier = "categoryCustomCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! CategoryCustomCell
         
+        //Image layer
         cell.imageView.image = UIImage(named:categories[indexPath.row])
         cell.imageView.layer.borderWidth = 1
         cell.imageView.layer.masksToBounds = false

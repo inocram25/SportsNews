@@ -21,6 +21,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var load: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        println("WARNING!")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //StatusBar - Light

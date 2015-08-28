@@ -22,12 +22,12 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let n = news {
-            titleLabel.text = n.title
-            if let urlString = n.imageURL{
+        if let news = news {
+            titleLabel.text = news.title
+            if let urlString = news.imageURL{
                 imageView.pin_setImageFromURL(NSURL(string: urlString))
             }
-            textView.text = n.textComp
+            textView.text = news.textComp
         }
         
         //Disable automatically adjusts in scrollview
