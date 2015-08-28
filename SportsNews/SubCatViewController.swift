@@ -51,7 +51,7 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else if selectedCategory == "Automobilismo" {
             imageView.image = UIImage(named: "Automobilismo")
-            subCategories = ["Formula 1","Formula Indy","Motor","Stockcar"]
+            subCategories = ["Formula-1","Formula-Indy","Motor","Stockcar"]
         }
 
     }

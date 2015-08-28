@@ -27,10 +27,10 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         
         //Image layer
         cell.imageView.image = UIImage(named:categories[indexPath.row])
-        cell.imageView.layer.borderWidth = 1
+        cell.imageView.layer.borderWidth = 2
         cell.imageView.layer.masksToBounds = false
         cell.imageView.layer.borderColor = UIColor.blackColor().CGColor
-        cell.imageView.layer.cornerRadius = 5
+        cell.imageView.layer.cornerRadius = 40
         cell.imageView.clipsToBounds = true
         
         cell.titleLabel.text = categories[indexPath.row]

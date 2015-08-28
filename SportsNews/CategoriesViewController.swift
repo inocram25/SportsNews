@@ -18,7 +18,7 @@ class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "light_pattern")!)
+        self.collectionView.backgroundColor = UIColor(patternImage: UIImage(named: "whiteSports_pattern")!)
     }
 
     override func didReceiveMemoryWarning() {

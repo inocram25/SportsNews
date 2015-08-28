@@ -35,15 +35,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="58c-0w-ghA">
-                                                    <rect key="frame" x="4" y="-13" width="120" height="120"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="58c-0w-ghA">
+                                                    <rect key="frame" x="4" y="-11" width="120" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="120" id="K5y-xD-eqg"/>
                                                         <constraint firstAttribute="width" constant="120" id="Og3-at-wYM"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW0-vI-grO">
-                                                    <rect key="frame" x="0.0" y="108" width="128" height="21"/>
+                                                    <rect key="frame" x="0.0" y="98" width="128" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                                             <constraint firstAttribute="trailing" secondItem="RW0-vI-grO" secondAttribute="trailing" id="39w-Lb-yC7"/>
                                             <constraint firstAttribute="bottom" secondItem="RW0-vI-grO" secondAttribute="bottom" id="4k0-OW-k23"/>
                                             <constraint firstAttribute="centerY" secondItem="58c-0w-ghA" secondAttribute="centerY" multiplier="1.3" priority="750" id="F1I-gH-gGL"/>
-                                            <constraint firstItem="RW0-vI-grO" firstAttribute="top" secondItem="58c-0w-ghA" secondAttribute="bottom" id="LqH-6G-vpf"/>
+                                            <constraint firstItem="RW0-vI-grO" firstAttribute="top" secondItem="58c-0w-ghA" secondAttribute="bottom" multiplier="0.9" id="LqH-6G-vpf"/>
                                             <constraint firstItem="RW0-vI-grO" firstAttribute="top" secondItem="58c-0w-ghA" secondAttribute="bottom" constant="6" id="Ycq-WQ-k0Z"/>
                                             <constraint firstItem="RW0-vI-grO" firstAttribute="leading" secondItem="lac-2n-JbS" secondAttribute="leading" id="jg8-Md-LD5"/>
                                             <constraint firstItem="58c-0w-ghA" firstAttribute="top" secondItem="lac-2n-JbS" secondAttribute="top" id="qbQ-ua-2gK"/>
@@ -135,7 +135,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="palmeiras" translatesAutoresizingMaskIntoConstraints="NO" id="7NH-Fx-kjp">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="palmeiras" translatesAutoresizingMaskIntoConstraints="NO" id="7NH-Fx-kjp">
                                                     <rect key="frame" x="29" y="6" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="SK3-Qx-FNM"/>
@@ -205,27 +205,27 @@
                         <viewControllerLayoutGuide type="bottom" id="Yfm-4i-lkZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="y2w-MH-xC3">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OQ-e0-NaW">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OQ-e0-NaW">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KY-jl-Z9j" userLabel="content">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="720"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="643"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="Oxt-5O-o5l">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Robinho realiza lindo lance em amistoso!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAL-IE-1KB">
-                                                <rect key="frame" x="0.0" y="108" width="600" height="72"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Robinho realiza lindo lance em amistoso!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAL-IE-1KB">
+                                                <rect key="frame" x="0.0" y="96" width="600" height="65"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="4sl-g0-Bvh">
-                                                <rect key="frame" x="0.0" y="180" width="600" height="540"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="4sl-g0-Bvh">
+                                                <rect key="frame" x="0.0" y="161" width="600" height="482"/>
                                                 <color key="backgroundColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
@@ -336,7 +336,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMT-iT-N5I">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCr-YE-2Ym">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCr-YE-2Ym">
                                                             <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ik6-Aq-8Md">
@@ -663,7 +663,7 @@
         <image name="star-empty" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DX3-eV-bV8"/>
         <segue reference="gdF-YZ-QBi"/>
+        <segue reference="dDg-a9-FaZ"/>
     </inferredMetricsTieBreakers>
 </document>
