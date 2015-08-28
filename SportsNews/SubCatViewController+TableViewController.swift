@@ -19,18 +19,17 @@ extension SubCatViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cellIdentifier = "subcat"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SubCatCustonCell
-        
         let subCategoryName = vetSubCat[indexPath.row]
         cell.label.text = subCategoryName
-        cell.iconView.image = UIImage(named: "SaoPaulo")
+        cell.iconView.image = UIImage(named: subCategoryName.lowercaseString)
         //cell.iconView.layer.borderWidth = 1
         //cell.iconView.layer.masksToBounds = false
         //cell.iconView.layer.borderColor = UIColor.redColor().CGColor
         //cell.iconView.layer.cornerRadius = cell.iconView.frame.size.width / 2
         //cell.iconView.clipsToBounds = true
-        
         
         return cell
     }

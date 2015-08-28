@@ -15,11 +15,13 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     var news: News?
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //for hidden load layer
-
         if let n = news {
             titleLabel.text = n.title
             if let urlString = n.imageURL{
@@ -28,24 +30,7 @@ class NewsViewController: UIViewController {
             textView.text = n.textComp
         }
         
-        // desativar ajuste automatico scrollview
+        //Disable automatically adjusts in scrollview
         self.automaticallyAdjustsScrollViewInsets = false
     }
-    
-    override func viewWillAppear(animated: Bool)
-    {
-        self.navigationController?.navigationBarHidden = false
-    }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

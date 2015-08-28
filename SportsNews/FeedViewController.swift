@@ -13,15 +13,15 @@ class FeedViewController: UIViewController {
     
     let sportHTMLReader = SportHTMLReader()
     var news = [News]()
+    var favorites = [String]()
     var selectedCategory:String?
     var url:NSURL!
     let defaults = NSUserDefaults.standardUserDefaults()
-    var favorites = [String]()
     let refresh = UIRefreshControl()
     
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,13 +39,8 @@ class FeedViewController: UIViewController {
         }
         
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            
             if let n = result.value{
                 self.news = n
-                
-                if self.news.count != 0 {
-                    //for stop animated
-                }
                 self.collectionView.reloadData()
             }
         }
@@ -87,10 +82,9 @@ class FeedViewController: UIViewController {
         }
     }
     
+    // MARK: - Refresh
     func refreshNews(){
-        println("refreshing... \(url)")
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            
             if let n = result.value{
                 self.news = n
                 self.collectionView.reloadData()
@@ -99,10 +93,10 @@ class FeedViewController: UIViewController {
         }
     }
     
+    // MARK: - Add Favortie
     @IBAction func favouriteTapped(sender: AnyObject) {
         //Change icon color
         favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.redColor()).imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        
         
         //Save Favorites
         let data = defaults.objectForKey("favorites") as? NSData
@@ -117,7 +111,6 @@ class FeedViewController: UIViewController {
     }
 
     // MARK: - Navigation
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "readNewsFromMyFeed" {
             let vc = segue.destinationViewController as! NewsViewController

@@ -27,7 +27,20 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         if selectedCategory == "Futebol" {
             label.text = selectedCategory
-            vetSubCat = ["ABC-RN","America-MG","America-RN","Atletico-GO","Atletico-MG"]
+            vetSubCat =
+                    ["ABC-RN","America-MG","America-RN","Atletico-GO",
+                    "Atletico-MG","Avai","Bahia",
+                    "Boa Esporte","Botafogo","Bragantino",
+                    "Ceara","Chapecoense","Corinthians",
+                    "Coritiba","CRB","Criciuma","Cruzeiro",
+                    "Figueirense","Flamengo","Fluminense",
+                    "Goias","Gremio","Guarani",
+                    "Icasa","Inter-RS","Joinville",
+                    "Luverdense","Macae","Nautico",
+                    "Oeste","Palmeiras","Parana Clube",
+                    "Paysandu","Ponte Preta","Portuguesa",
+                    "Sampaio Correa","Santa Cruz","Santos",
+                    "Sao Paulo","Sport Club","Vasco","Vila Nova","Vitoria"]
         }
         //TO-DO: fazer as subcateogiras corretamente.
 

@@ -21,9 +21,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var load: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //set hide navigation bar
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //StatusBar - Light
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        //NavBar - set hidden
         navigationController?.navigationBarHidden = true
         
         UIView.animateWithDuration(0.7, delay: 0.3,
@@ -60,9 +63,13 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .Default
+    }
+    
     func refreshNews(){
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            
             if let n = result.value{
                 self.news = n
                 self.collectionView.reloadData()
@@ -72,8 +79,6 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "readNews" {
             let vc = segue.destinationViewController as! NewsViewController

@@ -13,12 +13,10 @@ import PINRemoteImage
 extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return news.count
     }
     
@@ -32,6 +30,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         if let urlString = news[indexPath.row].imageURL{
             cell.imageView.pin_setImageFromURL(NSURL(string: urlString), placeholderImage: UIImage(named: "placeholder"))
         }else{
+            //Case: No image
             cell.imageView.image = UIImage(named: "placeholder")
         }
         
@@ -40,7 +39,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
         let selectedNews = news[indexPath.row]
         performSegueWithIdentifier("readNews", sender: selectedNews)
         
