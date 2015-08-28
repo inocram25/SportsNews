@@ -15,16 +15,16 @@ extension SubCatViewController: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vetSubCat.count
+        return subCategories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdentifier = "subcat"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SubCatCustonCell
-        let subCategoryName = vetSubCat[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SubCatCustomCell
+        let subCategoryName = subCategories[indexPath.row]
         
-        cell.label.text = subCategoryName
+        cell.titleLabel.text = subCategoryName
         cell.iconView.image = UIImage(named: subCategoryName.lowercaseString)
         
         return cell
@@ -56,7 +56,9 @@ extension SubCatViewController: UITableViewDataSource, UITableViewDelegate {
         return footerView
     }
     
-    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }*/
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let selectedCategoryTitle = (tableView.cellForRowAtIndexPath(indexPath) as! SubCatCustomCell).titleLabel.text
+        performSegueWithIdentifier("showSubCategoriesNews", sender: selectedCategoryTitle)
+    }
 }

@@ -12,7 +12,9 @@ class CategoriesViewController: UIViewController {
         
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let categories = ["Futebol","Basquete","Ciclismo","Atletismo","Corrida","Natacao","Tenis","Volei","Outros"]
+    let categories = ["Futebol","Automobilismo","Basquete",
+                     "Ciclismo","Atletismo","Corrida",
+                     "Natacao","Tenis","Volei","Outros"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

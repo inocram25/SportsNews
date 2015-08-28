@@ -24,10 +24,10 @@ class NewsViewController: UIViewController {
         
         if let news = news {
             titleLabel.text = news.title
+            textView.text = news.textComp
             if let urlString = news.imageURL{
                 imageView.pin_setImageFromURL(NSURL(string: urlString))
             }
-            textView.text = news.textComp
         }
         
         //Disable automatically adjusts in scrollview

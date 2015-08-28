@@ -29,8 +29,8 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
         cell.imageView.image = UIImage(named:categories[indexPath.row])
         cell.imageView.layer.borderWidth = 1
         cell.imageView.layer.masksToBounds = false
-        cell.imageView.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2
+        cell.imageView.layer.borderColor = UIColor.blackColor().CGColor
+        cell.imageView.layer.cornerRadius = 5
         cell.imageView.clipsToBounds = true
         
         cell.titleLabel.text = categories[indexPath.row]
@@ -42,13 +42,7 @@ extension CategoriesViewController: UICollectionViewDelegateFlowLayout, UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let title = (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCustomCell).titleLabel.text
-        if indexPath.row < 2{
-            performSegueWithIdentifier("showSubCategories", sender: title)
-        }
-        else{
-            
-            performSegueWithIdentifier("showCategoryNews", sender: title)
-        }
+        indexPath.row < 2 ? performSegueWithIdentifier("showSubCategories", sender: title) : performSegueWithIdentifier("showCategoryNews", sender: title)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

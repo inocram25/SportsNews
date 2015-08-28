@@ -14,8 +14,6 @@ import Result
 
 class SportHTMLReader {
     
-    var news = [News]()
-    
     private lazy var manager: Alamofire.Manager = {
         
         let configuration: NSURLSessionConfiguration = {
@@ -33,6 +31,8 @@ class SportHTMLReader {
         }()
     
     func getNewsFromURL(URL: NSURL, completion: ((Result<[News], NSError?>)  -> Void)){
+        
+        var news = [News]()
         
         manager.request(.GET, URL).response { (_, _, responseData, error) in
             
@@ -76,9 +76,9 @@ class SportHTMLReader {
                         }
                     }
                     currentNews.textComp = newsBody.componentsSeparatedByString("content:encoded")[1]
-                    self.news.append(currentNews)
+                    news.append(currentNews)
                 }
-                completion(Result.success(self.news))
+                completion(Result.success(news))
             }else {
                 completion(Result.failure(error))
                 println("error parsing responseData")

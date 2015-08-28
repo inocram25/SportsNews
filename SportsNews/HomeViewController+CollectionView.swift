@@ -29,9 +29,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         
         if let urlString = news[indexPath.row].imageURL{
             cell.imageView.pin_setImageFromURL(NSURL(string: urlString), placeholderImage: UIImage(named: "placeholder"))
-        }else{
-            //Case: No image
-            cell.imageView.image = UIImage(named: "placeholder")
+        }else {
+            cell.imageView.image = UIImage(named: "no_image")
         }
         
         return cell

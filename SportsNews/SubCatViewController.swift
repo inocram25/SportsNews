@@ -12,10 +12,9 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var label: UILabel!
 
     var selectedCategory: String?
-    var vetSubCat = [String]()
+    var subCategories = [String]()
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -23,42 +22,47 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
-        self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "darkSports_pattern")!)
+        navigationController?.navigationBarHidden = false
+        self.title = selectedCategory
+        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "darkSports_pattern")!)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if selectedCategory == "Futebol" {
-            label.text = selectedCategory
-            vetSubCat =
-                    ["ABC-RN","America-MG","America-RN","Atletico-GO",
+            imageView.image = UIImage(named: "Futebol")
+            subCategories =
+                    ["Selecao-Brasileira","Futebol-Internacional","Futebol-Feminino",
+                    "ABC-RN","America-MG","America-RN","Atletico-GO",
                     "Atletico-MG","Avai","Bahia",
-                    "Boa Esporte","Botafogo","Bragantino",
+                    "Boa-Esporte","Botafogo","Bragantino",
                     "Ceara","Chapecoense","Corinthians",
                     "Coritiba","CRB","Criciuma","Cruzeiro",
                     "Figueirense","Flamengo","Fluminense",
                     "Goias","Gremio","Guarani",
                     "Icasa","Inter-RS","Joinville",
                     "Luverdense","Macae","Nautico",
-                    "Oeste","Palmeiras","Parana Clube",
-                    "Paysandu","Ponte Preta","Portuguesa",
-                    "Sampaio Correa","Santa Cruz","Santos",
-                    "Sao Paulo","Sport Club","Vasco","Vila Nova","Vitoria"]
+                    "Oeste","Palmeiras","Parana-Clube",
+                    "Paysandu","Ponte-Preta","Portuguesa",
+                    "Sampaio-Correa","Santa-Cruz","Santos",
+                    "Sao-Paulo","Sport-Club","Vasco","Vila-Nova","Vitoria"]
+        }
+        else if selectedCategory == "Automobilismo" {
+            imageView.image = UIImage(named: "Automobilismo")
+            subCategories = ["Formula 1","Formula Indy","Motor","Stockcar"]
         }
 
-        imageView.image = UIImage(named: "Futebol")
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showSubCategoriesNews" {
+            let title = sender as! String
+            let vc = segue.destinationViewController as! FeedViewController
+            vc.selectedCategory = title
+        }
     }
-    */
 
 }

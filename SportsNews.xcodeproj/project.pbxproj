@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3724570FED4877DACDF15C55 /* Pods_SportsNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE65B447DC62D86F6152813 /* Pods_SportsNews.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		9A2CA9501B8385A400B15CA9 /* SaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CA94F1B8385A400B15CA9 /* SaxParser.swift */; };
 		9A2CA9521B83878300B15CA9 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CA9511B83878300B15CA9 /* News.swift */; };
+		9A4EBC091B90DF80009A541D /* FeedViewController+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4EBC081B90DF80009A541D /* FeedViewController+EmptyState.swift */; };
 		9AA1D68B1B837E5900AEE046 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1D68A1B837E5900AEE046 /* AppDelegate.swift */; };
 		9AA1D6901B837E5900AEE046 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AA1D68E1B837E5900AEE046 /* Main.storyboard */; };
 		9AA1D6921B837E5900AEE046 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA1D6911B837E5900AEE046 /* Images.xcassets */; };
@@ -27,7 +27,7 @@
 		9AA4EBEE1B8B921D00FE449B /* CategoriesViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA4EBED1B8B921D00FE449B /* CategoriesViewController+CollectionView.swift */; };
 		9ADD83131B86475700F3CD6A /* SportHTMLReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD83121B86475700F3CD6A /* SportHTMLReader.swift */; };
 		9ADE42EF1B8CBAF70036118D /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE42EE1B8CBAF70036118D /* NewsViewController.swift */; };
-		9AF0AEA91B8CDE7F005C93E9 /* SubCatCustonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEA81B8CDE7F005C93E9 /* SubCatCustonCell.swift */; };
+		9AF0AEA91B8CDE7F005C93E9 /* SubCatCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEA81B8CDE7F005C93E9 /* SubCatCustomCell.swift */; };
 		9AF0AEAB1B8CE19B005C93E9 /* SubCatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEAA1B8CE19B005C93E9 /* SubCatViewController.swift */; };
 		9AF0AEAD1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF0AEAC1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift */; };
 		B37597C21B8E346C00D47F07 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37597C11B8E346C00D47F07 /* FeedViewController.swift */; };
@@ -48,8 +48,8 @@
 /* Begin PBXFileReference section */
 		8FE65B447DC62D86F6152813 /* Pods_SportsNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportsNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		994D0637E2DCC863BABCE69B /* Pods-SportsNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsNews.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsNews/Pods-SportsNews.release.xcconfig"; sourceTree = "<group>"; };
-		9A2CA94F1B8385A400B15CA9 /* SaxParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaxParser.swift; sourceTree = "<group>"; };
 		9A2CA9511B83878300B15CA9 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		9A4EBC081B90DF80009A541D /* FeedViewController+EmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedViewController+EmptyState.swift"; sourceTree = "<group>"; };
 		9AA1D6851B837E5900AEE046 /* SportsNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA1D6891B837E5900AEE046 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AA1D68A1B837E5900AEE046 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		9AA4EBED1B8B921D00FE449B /* CategoriesViewController+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoriesViewController+CollectionView.swift"; sourceTree = "<group>"; };
 		9ADD83121B86475700F3CD6A /* SportHTMLReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportHTMLReader.swift; sourceTree = "<group>"; };
 		9ADE42EE1B8CBAF70036118D /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
-		9AF0AEA81B8CDE7F005C93E9 /* SubCatCustonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCatCustonCell.swift; sourceTree = "<group>"; };
+		9AF0AEA81B8CDE7F005C93E9 /* SubCatCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCatCustomCell.swift; sourceTree = "<group>"; };
 		9AF0AEAA1B8CE19B005C93E9 /* SubCatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCatViewController.swift; sourceTree = "<group>"; };
 		9AF0AEAC1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubCatViewController+TableViewController.swift"; sourceTree = "<group>"; };
 		B37597C11B8E346C00D47F07 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 				B37597C71B8E3EA600D47F07 /* FeedCustomCell.swift */,
 				9AA4EBDF1B8B7A2000FE449B /* BorderedView.swift */,
 				9AA4EBE81B8B908E00FE449B /* CategoryCustomCell.swift */,
-				9AF0AEA81B8CDE7F005C93E9 /* SubCatCustonCell.swift */,
+				9AF0AEA81B8CDE7F005C93E9 /* SubCatCustomCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -195,7 +195,6 @@
 		9AA1D6AC1B837E6D00AEE046 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9A2CA94F1B8385A400B15CA9 /* SaxParser.swift */,
 				9A2CA9511B83878300B15CA9 /* News.swift */,
 				9ADD83121B86475700F3CD6A /* SportHTMLReader.swift */,
 			);
@@ -245,6 +244,7 @@
 			children = (
 				B37597C11B8E346C00D47F07 /* FeedViewController.swift */,
 				B37597C51B8E3BA800D47F07 /* FeedViewController+CollectionView.swift */,
+				9A4EBC081B90DF80009A541D /* FeedViewController+EmptyState.swift */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -415,12 +415,12 @@
 				9ADE42EF1B8CBAF70036118D /* NewsViewController.swift in Sources */,
 				9AF0AEAD1B8CE2B1005C93E9 /* SubCatViewController+TableViewController.swift in Sources */,
 				9AA4EBE71B8B899200FE449B /* UIColor+News.swift in Sources */,
-				9A2CA9501B8385A400B15CA9 /* SaxParser.swift in Sources */,
 				9AA4EBE51B8B7BDB00FE449B /* UIImage+WithColor.swift in Sources */,
 				9AA4EBDD1B8B76AF00FE449B /* HomeCustomCell.swift in Sources */,
 				9AA4EBEE1B8B921D00FE449B /* CategoriesViewController+CollectionView.swift in Sources */,
 				9A2CA9521B83878300B15CA9 /* News.swift in Sources */,
 				9AA4EBE91B8B908E00FE449B /* CategoryCustomCell.swift in Sources */,
+				9A4EBC091B90DF80009A541D /* FeedViewController+EmptyState.swift in Sources */,
 				9AA1D68B1B837E5900AEE046 /* AppDelegate.swift in Sources */,
 				9ADD83131B86475700F3CD6A /* SportHTMLReader.swift in Sources */,
 				9AA4EBD91B8B75C300FE449B /* HomeViewController.swift in Sources */,
@@ -428,7 +428,7 @@
 				9AA4EBEC1B8B91E800FE449B /* CategoriesViewController.swift in Sources */,
 				B37597C81B8E3EA600D47F07 /* FeedCustomCell.swift in Sources */,
 				B37597C61B8E3BA800D47F07 /* FeedViewController+CollectionView.swift in Sources */,
-				9AF0AEA91B8CDE7F005C93E9 /* SubCatCustonCell.swift in Sources */,
+				9AF0AEA91B8CDE7F005C93E9 /* SubCatCustomCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

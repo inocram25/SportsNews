@@ -12,9 +12,10 @@ import Result
 class HomeViewController: UIViewController {
     
     let sportHTMLReader = SportHTMLReader()
-    var news = [News]()
-    let url = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")!
+    let baseURL = "http://www.gazetaesportiva.net/categoria/"
     let refresh = UIRefreshControl()
+    var news = [News]()
+    var url:NSURL!
     
     @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var imageIcon: UIImageView!
@@ -34,10 +35,10 @@ class HomeViewController: UIViewController {
         //NavBar - set hidden
         navigationController?.navigationBarHidden = true
         
-        UIView.animateWithDuration(0.7, delay: 0.3,
-            options: .Repeat | .Autoreverse, animations: {
-                self.iconView.alpha = 0
-            }, completion: nil)
+//        UIView.animateWithDuration(0.7, delay: 0.3,
+//            options: .Repeat | .Autoreverse, animations: {
+//                self.iconView.alpha = 0
+//            }, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -48,24 +49,20 @@ class HomeViewController: UIViewController {
         refresh.addTarget(self, action: "refreshNews", forControlEvents: UIControlEvents.ValueChanged)
         collectionView.addSubview(refresh)
         
-        //for load animated
-        load.layer.hidden = false
-        load.startAnimating()
+//        //for load animated
+//      load.layer.hidden = false
+//        load.startAnimating()
         
-        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            
-            if let n = result.value{
-                self.news = n
-                
-                if self.news.count != 0 {
-                    //for stop animated
-                    self.load.layer.hidden = true
-                    self.load.stopAnimating()
-                    self.imageIcon.layer.hidden = true
-                }
-                self.collectionView.reloadData()
-            }
-        }
+//        if self.news.count != 0 {
+//            //for stop animated
+     self.load.layer.hidden = true
+//            self.load.stopAnimating()
+        self.imageIcon.layer.hidden = true
+//        }
+        
+        //Feed CollectionView - Get news
+        feedHome()
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -74,13 +71,70 @@ class HomeViewController: UIViewController {
     }
     
     func refreshNews(){
-        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
+        feedHome()
+        self.refresh.endRefreshing()
+    }
+    
+    //Sorry About that, but we dont have time :)
+    func feedHome() {
+        url = NSURL(string: baseURL + "regiao-sudeste/feed/")
+        
+        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
+            
             if let n = result.value{
                 self.news = n
                 self.collectionView.reloadData()
-                self.refresh.endRefreshing()
             }
         }
+        //
+        delay(1.0, closure: { () -> () in
+            self.url = NSURL(string: self.baseURL + "regiao-nordeste/feed/")
+            
+            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
+                
+                if let n = result.value{
+                    self.news = self.news + n
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+        //
+        delay(2.0, closure: { () -> () in
+            self.url = NSURL(string: self.baseURL + "regiao-norte/feed/")
+            
+            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
+                
+                if let n = result.value{
+                    self.news = self.news + n
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+        //
+        delay(3.0, closure: { () -> () in
+            self.url = NSURL(string: self.baseURL + "regiao-centro-oeste/feed/")
+            
+            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
+                
+                if let n = result.value{
+                    self.news = self.news + n
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+        //
+        
+        delay(4.0, closure: { () -> () in
+            self.url = NSURL(string: self.baseURL + "regiao-sul/feed/")
+            
+            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
+                
+                if let n = result.value{
+                    self.news = self.news + n
+                    self.collectionView.reloadData()
+                }
+            }
+        })
     }
     
     // MARK: - Navigation
@@ -90,6 +144,15 @@ class HomeViewController: UIViewController {
             let selectedNews = sender as! News
             vc.news = selectedNews
         }
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
     
 }

@@ -31,25 +31,38 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        
         let baseURL = "http://www.gazetaesportiva.net/categoria/"
         
-        if let selected = selectedCategory?.lowercaseString{
+        if var selected = selectedCategory?.lowercaseString{
+            
+            if selected == "corrida" {
+                selected = "corrida-e-caminhada"
+            }
             url = NSURL(string:baseURL + selected + "/feed/")
             
         }else{
+            //Set delegate
+            collectionView.emptyDataSetSource = self;
+            collectionView.emptyDataSetDelegate = self;
+            
             let data = defaults.objectForKey("favorites") as? NSData
             if let data = data{
-                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [AnyObject]
+                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String]
                 println(urls)
+                if let urlString = urls?.first {
+                    url = NSURL(string: urlString)
+                }
             }
-            
-            url = NSURL(string: "http://www.gazetaesportiva.net/categoria/futebol-internacional/feed/")
         }
         
-        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            if let n = result.value{
-                self.news = n
-                self.collectionView.reloadData()
+        //Feed CollectionView - Get News
+        if url != nil {
+            sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
+                if let news = result.value{
+                    self.news = news
+                    self.collectionView.reloadData()
+                }
             }
         }
     }
@@ -58,11 +71,20 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if selectedCategory == nil {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.navigationItem.setRightBarButtonItem(nil, animated: true)
+        }
+        
         //RefreshControl
         refresh.tintColor = UIColor.whiteColor()
         refresh.addTarget(self, action: "refreshNews", forControlEvents: UIControlEvents.ValueChanged)
         collectionView.addSubview(refresh)
-        
+    }
+    
+    deinit {
+        collectionView.emptyDataSetSource = nil;
+        collectionView.emptyDataSetDelegate = nil;
     }
 
     // MARK: - Refresh

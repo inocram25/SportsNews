@@ -30,6 +30,8 @@ extension FeedViewController : UICollectionViewDelegateFlowLayout, UICollectionV
         cell.titleLabel.text = news[indexPath.row].title
         if let urlString = news[indexPath.row].imageURL{
             cell.imageView.pin_setImageFromURL(NSURL(string: urlString), placeholderImage: UIImage(named: "placeholder"))
+        }else {
+            cell.imageView.image = UIImage(named: "no_image")
         }
         
         return cell
