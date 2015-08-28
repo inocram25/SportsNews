@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     
     let sportHTMLReader = SportHTMLReader()
     var news = [News]()
+    let url = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")!
+    let refresh = UIRefreshControl()
     
     @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var imageIcon: UIImageView!
@@ -33,11 +35,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //RefreshControl
+        refresh.tintColor = UIColor.whiteColor()
+        refresh.addTarget(self, action: "refreshNews", forControlEvents: UIControlEvents.ValueChanged)
+        collectionView.addSubview(refresh)
+        
         //for load animated
         load.layer.hidden = false
         load.startAnimating()
         
-        let url = NSURL(string: "http://www.gazetaesportiva.net/categoria/tenis/feed/")!
         sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
             
             if let n = result.value{
@@ -50,6 +56,17 @@ class HomeViewController: UIViewController {
                     self.imageIcon.layer.hidden = true
                 }
                 self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func refreshNews(){
+        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
+            
+            if let n = result.value{
+                self.news = n
+                self.collectionView.reloadData()
+                self.refresh.endRefreshing()
             }
         }
     }

@@ -17,6 +17,7 @@ class FeedViewController: UIViewController {
     var url:NSURL!
     let defaults = NSUserDefaults.standardUserDefaults()
     var favorites = [String]()
+    let refresh = UIRefreshControl()
     
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     
@@ -24,7 +25,6 @@ class FeedViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         
         if let selected = selectedCategory{
             urlFromSelecetedCategory()
@@ -50,9 +50,15 @@ class FeedViewController: UIViewController {
             }
         }
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //RefreshControl
+        refresh.tintColor = UIColor.whiteColor()
+        refresh.addTarget(self, action: "refreshNews", forControlEvents: UIControlEvents.ValueChanged)
+        collectionView.addSubview(refresh)
         
     }
     
@@ -81,14 +87,29 @@ class FeedViewController: UIViewController {
         }
     }
     
+    func refreshNews(){
+        println("refreshing... \(url)")
+        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
+            
+            if let n = result.value{
+                self.news = n
+                self.collectionView.reloadData()
+                self.refresh.endRefreshing()
+            }
+        }
+    }
+    
     @IBAction func favouriteTapped(sender: AnyObject) {
-        self.favoriteBarButton.tintColor = UIColor.redColor()
+        //Change icon color
+        favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.redColor()).imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        
+        
+        //Save Favorites
         let data = defaults.objectForKey("favorites") as? NSData
         if let data = data{
             favorites = (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String])!
             println("aoba \(favorites)")
         }
-        
         favorites.append("\(url)")
         let dataArray = NSKeyedArchiver.archivedDataWithRootObject(favorites)
         defaults.setObject(dataArray, forKey: "favorites")
