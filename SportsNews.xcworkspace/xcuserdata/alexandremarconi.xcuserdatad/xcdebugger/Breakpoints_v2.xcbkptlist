@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsNews/FeedViewController.swift"
-            timestampString = "462641944.77782"
+            timestampString = "462661252.414034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "favouriteTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>

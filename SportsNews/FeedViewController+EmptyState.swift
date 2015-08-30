@@ -20,7 +20,7 @@ extension FeedViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
         
         let attributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSParagraphStyleAttributeName: paragraph]
         
-        return NSAttributedString(string: "Nenhum favoritos ainda", attributes: attributes)
+        return NSAttributedString(string: "Nenhum favorito ainda.", attributes: attributes)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

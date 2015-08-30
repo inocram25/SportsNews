@@ -18,6 +18,7 @@ class FeedViewController: UIViewController {
     var url:NSURL!
     let defaults = NSUserDefaults.standardUserDefaults()
     let refresh = UIRefreshControl()
+    let baseURL = "http://www.gazetaesportiva.net/categoria/"
     
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,38 +32,38 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        let baseURL = "http://www.gazetaesportiva.net/categoria/"
-        
+        //Call by CategoriesVC
         if var selected = selectedCategory?.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "-") {
             
             if selected == "corrida" {
                 selected = "corrida-e-caminhada"
             }
+            //Feed CollectionView - Get News
             url = NSURL(string:baseURL + selected + "/feed/")
+            
+            sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
+                if let news = result.value{
+                    self.news = news
+                    self.collectionView.reloadData()
+                }
+            }
             
         }else{
             //Set delegate
             collectionView.emptyDataSetSource = self;
             collectionView.emptyDataSetDelegate = self;
             
-            let data = defaults.objectForKey("favorites") as? NSData
-            if let data = data{
-                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String]
+            if let data = defaults.objectForKey("favorites") as? NSData {
+                let stringUrls = (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String])!
+                var urls = [NSURL]()
                 println(urls)
-                if let urlString = urls?.first {
-                    url = NSURL(string: urlString)
+                for URL in stringUrls{
+                    //Transform URL (string) in NSURL
+                    urls.append(NSURL(string: URL)!)
                 }
-            }
-        }
-        
-        //Feed CollectionView - Get News
-        if url != nil {
-            sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
-                if let news = result.value{
-                    self.news = news
-                    self.collectionView.reloadData()
-                }
+                sportHTMLReader.getNewsFromMultiplesURLs(urls, completion: { (result: Result<[News], NSError?>) in
+                    //TO-DO
+                })
             }
         }
     }
@@ -74,6 +75,7 @@ class FeedViewController: UIViewController {
         if selectedCategory == nil {
             self.navigationItem.rightBarButtonItem?.enabled = false
             self.navigationItem.setRightBarButtonItem(nil, animated: true)
+            self.title = "Favoritos"
         }
         
         //RefreshControl
@@ -101,7 +103,7 @@ class FeedViewController: UIViewController {
     // MARK: - Add Favortie
     @IBAction func favouriteTapped(sender: AnyObject) {
         //Change icon color
-        favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.blueColor()).imageWithRenderingMode(.AlwaysOriginal)
+        favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.purpleColor()).imageWithRenderingMode(.AlwaysOriginal)
         
         //Save Favorites
         let data = defaults.objectForKey("favorites") as? NSData

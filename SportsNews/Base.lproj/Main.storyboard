@@ -305,7 +305,7 @@
             </objects>
             <point key="canvasLocation" x="-434" y="2528"/>
         </scene>
-        <!--Favoritos-->
+        <!--Feed View Controller-->
         <scene sceneID="dcH-9N-5s1">
             <objects>
                 <viewController id="Ixa-Za-MUd" customClass="FeedViewController" customModule="SportsNews" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,8 +401,8 @@
                             <constraint firstItem="brK-4P-h4x" firstAttribute="top" secondItem="iJv-T3-Z8T" secondAttribute="top" id="ze6-50-rjd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Favoritos" id="pGG-Nt-bcn">
-                        <barButtonItem key="rightBarButtonItem" image="star-empty" id="uul-kf-8jg">
+                    <navigationItem key="navigationItem" id="pGG-Nt-bcn">
+                        <barButtonItem key="rightBarButtonItem" image="star-fill" id="uul-kf-8jg">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="favouriteTapped:" destination="Ixa-Za-MUd" id="zGb-4l-Yvu"/>
@@ -660,7 +660,7 @@
         <image name="list-simple-7" width="30" height="30"/>
         <image name="no_image" width="1092" height="690"/>
         <image name="palmeiras" width="200" height="200"/>
-        <image name="star-empty" width="30" height="30"/>
+        <image name="star-fill" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gdF-YZ-QBi"/>

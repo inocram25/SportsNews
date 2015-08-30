@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         //StatusBar - Light
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
@@ -61,7 +62,6 @@ class HomeViewController: UIViewController {
         
         //Feed CollectionView - Get news
         feedHome()
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -69,7 +69,9 @@ class HomeViewController: UIViewController {
         UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
+    
     func feedHome() {
+        news = []
         var urls = [NSURL]()
         urls.append(NSURL(string: baseURL + "regiao-sudeste/feed/")!)
         urls.append(NSURL(string: baseURL + "regiao-nordeste/feed/")!)
