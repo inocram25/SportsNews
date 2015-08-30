@@ -85,4 +85,63 @@ class SportHTMLReader {
             }
         }
     }
+    
+    //For multiples URLs
+    func getNewsFromMultiplesURLs(URLs: [NSURL], completion: ((Result<[News], NSError?>)  -> Void)){
+        
+        for URL in URLs {
+            var news = [News]()
+            
+            manager.request(.GET, URL).response { (_, _, responseData, error) in
+                
+                if let responseObject = responseData, stringData = NSString(data: responseObject, encoding: NSUTF8StringEncoding) as? String {
+                    
+                    let filtered = stringData.stringByReplacingOccurrencesOfString("<![CDATA[", withString: "").stringByReplacingOccurrencesOfString("]]>", withString: "")
+                    
+                    let document = HTMLDocument(string: filtered)
+                    let divHeadings = document.nodesMatchingSelector("item") as! [HTMLElement]
+                    
+                    for div in divHeadings {
+                        
+                        var currentNews = News()
+                        var newsBody = ""
+                        
+                        for htmlNode in div.childElementNodes {
+                            newsBody = newsBody.stringByAppendingString("\(htmlNode.tagName)\n")
+                            newsBody = newsBody.stringByAppendingString(htmlNode.textContent)
+                            newsBody = newsBody.stringByAppendingString("\n\(htmlNode.tagName)\n")
+                            
+                            if let element = htmlNode as? HTMLElement {
+                                if let e = element.firstNodeMatchingSelector("title") {
+                                    currentNews.title = e.textContent
+                                }
+                                
+                                if let e = element.firstNodeMatchingSelector("img"), imgPath = e.attributes["src"] as? String{
+                                    currentNews.imageURL = imgPath
+                                }
+                                
+                                if let e = element.firstNodeMatchingSelector("description") {
+                                    currentNews.text = e.textContent
+                                }
+                                
+                                if let e = element.firstNodeMatchingSelector("guid") {
+                                    currentNews.link = e.textContent
+                                }
+                                
+                                if let e = element.firstNodeMatchingSelector("pubDate") {
+                                    currentNews.pubDate = e.textContent
+                                }
+                            }
+                        }
+                        currentNews.textComp = newsBody.componentsSeparatedByString("content:encoded")[1]
+                        news.append(currentNews)
+                    }
+                    completion(Result.success(news))
+                }else {
+                    completion(Result.failure(error))
+                    println("error parsing responseData")
+                }
+            }
+        }
+    }
 }

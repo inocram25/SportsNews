@@ -34,20 +34,20 @@ class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if selectedCategory == "Futebol" {
             imageView.image = UIImage(named: "Futebol")
             subCategories =
-                    ["Selecao-Brasileira","Futebol-Internacional","Futebol-Feminino",
+                    ["Selecao Brasileira","Futebol Internacional","Futebol Feminino",
                     "ABC-RN","America-MG","America-RN","Atletico-GO",
                     "Atletico-MG","Avai","Bahia",
-                    "Boa-Esporte","Botafogo","Bragantino",
+                    "Boa Esporte","Botafogo","Bragantino",
                     "Ceara","Chapecoense","Corinthians",
                     "Coritiba","CRB","Criciuma","Cruzeiro",
                     "Figueirense","Flamengo","Fluminense",
                     "Goias","Gremio","Guarani",
                     "Icasa","Inter-RS","Joinville",
                     "Luverdense","Macae","Nautico",
-                    "Oeste","Palmeiras","Parana-Clube",
-                    "Paysandu","Ponte-Preta","Portuguesa",
-                    "Sampaio-Correa","Santa-Cruz","Santos",
-                    "Sao-Paulo","Sport-Club","Vasco","Vila-Nova","Vitoria"]
+                    "Oeste","Palmeiras","Parana Clube",
+                    "Paysandu","Ponte Preta","Portuguesa",
+                    "Sampaio Correa","Santa Cruz","Santos",
+                    "Sao Paulo","Sport Club","Vasco","Vila Nova","Vitoria"]
         }
         else if selectedCategory == "Automobilismo" {
             imageView.image = UIImage(named: "Automobilismo")

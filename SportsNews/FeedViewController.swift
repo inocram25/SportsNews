@@ -34,7 +34,7 @@ class FeedViewController: UIViewController {
         
         let baseURL = "http://www.gazetaesportiva.net/categoria/"
         
-        if var selected = selectedCategory?.lowercaseString{
+        if var selected = selectedCategory?.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "-") {
             
             if selected == "corrida" {
                 selected = "corrida-e-caminhada"
@@ -101,7 +101,7 @@ class FeedViewController: UIViewController {
     // MARK: - Add Favortie
     @IBAction func favouriteTapped(sender: AnyObject) {
         //Change icon color
-        favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.redColor()).imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.blueColor()).imageWithRenderingMode(.AlwaysOriginal)
         
         //Save Favorites
         let data = defaults.objectForKey("favorites") as? NSData
@@ -123,5 +123,4 @@ class FeedViewController: UIViewController {
             vc.news = selectedNews
         }
     }
-
 }

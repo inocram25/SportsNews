@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     let baseURL = "http://www.gazetaesportiva.net/categoria/"
     let refresh = UIRefreshControl()
     var news = [News]()
-    var url:NSURL!
     
     @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var imageIcon: UIImageView!
@@ -70,71 +69,26 @@ class HomeViewController: UIViewController {
         UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
-    func refreshNews(){
-        feedHome()
-        self.refresh.endRefreshing()
-    }
-    
-    //Sorry About that, but we dont have time :)
     func feedHome() {
-        url = NSURL(string: baseURL + "regiao-sudeste/feed/")
-        
-        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
+        var urls = [NSURL]()
+        urls.append(NSURL(string: baseURL + "regiao-sudeste/feed/")!)
+        urls.append(NSURL(string: baseURL + "regiao-nordeste/feed/")!)
+        urls.append(NSURL(string: baseURL + "regiao-centro-oeste/feed/")!)
+        urls.append(NSURL(string: baseURL + "regiao-sul/feed/")!)
+        urls.append(NSURL(string: baseURL + "regiao-norte/feed/")!)
+        sportHTMLReader.getNewsFromMultiplesURLs(urls) { (result: Result<[News], NSError?>) in
             
-            if let n = result.value{
-                self.news = n
+            if let n = result.value {
+                println(n.count)
+                self.news = self.news + n
                 self.collectionView.reloadData()
             }
         }
-        //
-        delay(1.0, closure: { () -> () in
-            self.url = NSURL(string: self.baseURL + "regiao-nordeste/feed/")
-            
-            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
-                
-                if let n = result.value{
-                    self.news = self.news + n
-                    self.collectionView.reloadData()
-                }
-            }
-        })
-        //
-        delay(2.0, closure: { () -> () in
-            self.url = NSURL(string: self.baseURL + "regiao-norte/feed/")
-            
-            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
-                
-                if let n = result.value{
-                    self.news = self.news + n
-                    self.collectionView.reloadData()
-                }
-            }
-        })
-        //
-        delay(3.0, closure: { () -> () in
-            self.url = NSURL(string: self.baseURL + "regiao-centro-oeste/feed/")
-            
-            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
-                
-                if let n = result.value{
-                    self.news = self.news + n
-                    self.collectionView.reloadData()
-                }
-            }
-        })
-        //
-        
-        delay(4.0, closure: { () -> () in
-            self.url = NSURL(string: self.baseURL + "regiao-sul/feed/")
-            
-            self.sportHTMLReader.getNewsFromURL(self.url) { (result: Result<[News], NSError?>) in
-                
-                if let n = result.value{
-                    self.news = self.news + n
-                    self.collectionView.reloadData()
-                }
-            }
-        })
+    }
+    
+    func refreshNews(){
+        feedHome()
+        self.refresh.endRefreshing()
     }
     
     // MARK: - Navigation
@@ -145,14 +99,4 @@ class HomeViewController: UIViewController {
             vc.news = selectedNews
         }
     }
-    
-    func delay(delay:Double, closure:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure)
-    }
-    
 }

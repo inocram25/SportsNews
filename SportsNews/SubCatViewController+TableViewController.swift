@@ -25,7 +25,7 @@ extension SubCatViewController: UITableViewDataSource, UITableViewDelegate {
         let subCategoryName = subCategories[indexPath.row]
         
         cell.titleLabel.text = subCategoryName
-        cell.iconView.image = UIImage(named: subCategoryName.lowercaseString)
+        cell.iconView.image = UIImage(named: subCategoryName.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "-"))
         
         return cell
     }
