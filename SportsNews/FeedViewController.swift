@@ -19,7 +19,8 @@ class FeedViewController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     let refresh = UIRefreshControl()
     let baseURL = "http://www.gazetaesportiva.net/categoria/"
-    
+    var alreadyExist = false
+    var feedUrl: String = ""
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -38,8 +39,22 @@ class FeedViewController: UIViewController {
             if selected == "corrida" {
                 selected = "corrida-e-caminhada"
             }
-            //Feed CollectionView - Get News
-            url = NSURL(string:baseURL + selected + "/feed/")
+
+            feedUrl = String(baseURL + selected + "/feed/")
+            url = NSURL(string: feedUrl)
+            
+            let data = defaults.objectForKey("favorites") as? NSData
+            if let data = data{
+                let urls = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String]
+                if let auxUrls = urls {
+                    for a in auxUrls {
+                        if a == feedUrl {
+                            favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.blueColor()).imageWithRenderingMode(.AlwaysOriginal)
+                            alreadyExist = true
+                        }
+                    }
+                }
+            }
             
             sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
                 if let news = result.value{
@@ -102,16 +117,32 @@ class FeedViewController: UIViewController {
     
     // MARK: - Add Favortie
     @IBAction func favouriteTapped(sender: AnyObject) {
-        //Change icon color
-        favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.purpleColor()).imageWithRenderingMode(.AlwaysOriginal)
         
-        //Save Favorites
         let data = defaults.objectForKey("favorites") as? NSData
         if let data = data{
             favorites = (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String])!
-            println("aoba \(favorites)")
         }
-        favorites.append("\(url)")
+        
+        if alreadyExist == false {
+            //Change icon color
+            favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.blueColor()).imageWithRenderingMode(.AlwaysOriginal)
+            
+            //Save Favorites
+            
+            favorites.append("\(url)")
+            
+        }else{
+            //Change icon color
+            favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.whiteColor()).imageWithRenderingMode(.AlwaysOriginal)
+            
+            //Remove from favorites
+            for var i = 0; i < favorites.count; i++ {
+                if favorites[i] == feedUrl {
+                    favorites.removeAtIndex(i)
+                }
+            }
+            
+        }
         let dataArray = NSKeyedArchiver.archivedDataWithRootObject(favorites)
         defaults.setObject(dataArray, forKey: "favorites")
         defaults.synchronize()
