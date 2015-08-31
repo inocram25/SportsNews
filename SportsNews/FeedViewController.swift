@@ -60,9 +60,13 @@ class FeedViewController: UIViewController {
             
         }
         else {
+            
             //Set delegate
             collectionView.emptyDataSetSource = self;
             collectionView.emptyDataSetDelegate = self;
+            
+            news = []
+            self.collectionView.reloadData()
             
             //Get news from Userdeafults (favorites)
             if let data = defaults.objectForKey("favorites") as? NSData {
@@ -108,6 +112,7 @@ class FeedViewController: UIViewController {
                     self.collectionView.reloadData()
                 }
             })
+            
         }
         else{
             

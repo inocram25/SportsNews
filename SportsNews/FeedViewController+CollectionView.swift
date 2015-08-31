@@ -18,7 +18,6 @@ extension FeedViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return news.count
     }
     
