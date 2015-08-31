@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubCatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class SubCatViewController: UIViewController{
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!

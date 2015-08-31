@@ -78,14 +78,15 @@ class HomeViewController: UIViewController {
         urls.append(NSURL(string: baseURL + "regiao-centro-oeste/feed/")!)
         urls.append(NSURL(string: baseURL + "regiao-sul/feed/")!)
         urls.append(NSURL(string: baseURL + "regiao-norte/feed/")!)
+        
         sportHTMLReader.getNewsFromMultiplesURLs(urls) { (result: Result<[News], NSError?>) in
             
             if let n = result.value {
-                println(n.count)
                 self.news = self.news + n
                 self.collectionView.reloadData()
             }
         }
+        
     }
     
     func refreshNews(){

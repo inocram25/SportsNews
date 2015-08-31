@@ -32,12 +32,12 @@ extension FeedViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
         
         let attributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.lightGrayColor(), NSParagraphStyleAttributeName: paragraph]
         
-        return NSAttributedString(string: "Escolha uma ou mais categorias para mostrar nos seus favoritos", attributes: attributes)
+        return NSAttributedString(string: "Escolha uma ou mais categorias para mostrar no seus favoritos", attributes: attributes)
     }
     
-    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "")
-    }
+//    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+//        return UIImage()
+//    }
     
     func imageTintColorForEmptyDataSet(scrollView: UIScrollView!) -> UIColor! {
         return UIColor.whiteColor()
