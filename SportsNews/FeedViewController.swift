@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     let refresh = UIRefreshControl()
     let baseURL = "http://www.gazetaesportiva.net/categoria/"
+    var urls = [NSURL]()
     var news = [News]()
     var favorites = [String]()
     var selectedCategory:String?
@@ -26,8 +27,8 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
         println("WARNING!")
+        super.didReceiveMemoryWarning()
     }
     
     
@@ -55,15 +56,10 @@ class FeedViewController: UIViewController {
                     }
                 }
             }
+            feedForFavorites(false)
             
-            sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) in
-                if let news = result.value{
-                    self.news = news
-                    self.collectionView.reloadData()
-                }
-            }
-            
-        }else{
+        }
+        else {
             //Set delegate
             collectionView.emptyDataSetSource = self;
             collectionView.emptyDataSetDelegate = self;
@@ -71,16 +67,11 @@ class FeedViewController: UIViewController {
             //Get news from Userdeafults (favorites)
             if let data = defaults.objectForKey("favorites") as? NSData {
                 let stringUrls = (NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [String])!
-                let urls = stringUrls.map {NSURL(string: $0)!}
-                
-                sportHTMLReader.getNewsFromMultiplesURLs(urls, completion: { (result: Result<[News], NSError?>) in
-                    if let news = result.value {
-                        self.news = self.news + news
-                        self.collectionView.reloadData()
-                    }
-                })
+                urls = stringUrls.map {NSURL(string: $0)!}
+                feedForFavorites(true)
             }
         }
+        
     }
     
 
@@ -104,16 +95,42 @@ class FeedViewController: UIViewController {
         collectionView.emptyDataSetSource = nil;
         collectionView.emptyDataSetDelegate = nil;
     }
+    
+    // MARK: - Feed
+    func feedForFavorites(isFavorites: Bool) {
+        
+        if isFavorites {
+            
+            news = []
+            sportHTMLReader.getNewsFromMultiplesURLs(urls, completion: { (result: Result<[News], NSError?>) in
+                if let news = result.value {
+                    self.news = self.news + news
+                    self.collectionView.reloadData()
+                }
+            })
+        }
+        else{
+            
+            sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
+                if let news = result.value{
+                    self.news = news
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+
+    }
 
     // MARK: - Refresh - Need Fix
     func refreshNews(){
-        sportHTMLReader.getNewsFromURL(url) { (result: Result<[News], NSError?>) -> Void in
-            if let news = result.value{
-                self.news = news
-                self.collectionView.reloadData()
-                self.refresh.endRefreshing()
-            }
+        if let selected = selectedCategory {
+            feedForFavorites(false)
         }
+        else{
+            feedForFavorites(true)
+        }
+        
+        refresh.endRefreshing()
     }
     
     // MARK: - Add Favortie
@@ -126,13 +143,14 @@ class FeedViewController: UIViewController {
         if alreadyExist == false {
             //Change icon color
             favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.blueColor()).imageWithRenderingMode(.AlwaysOriginal)
+            favoriteBarButton.enabled = false
             
             //Save Favorites
             favorites.append(feedUrl!)
             
         }else{
             //Change icon color
-            favoriteBarButton.image = favoriteBarButton.image?.imageWithColor(UIColor.whiteColor()).imageWithRenderingMode(.AlwaysOriginal)
+            favoriteBarButton.image = UIImage(named: "star-fill")
             
             //Remove from favorites
             favorites = favorites.filter {$0 != self.feedUrl}

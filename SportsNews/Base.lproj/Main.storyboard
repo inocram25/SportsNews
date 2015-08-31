@@ -632,11 +632,11 @@
             </objects>
             <point key="canvasLocation" x="192" y="1003"/>
         </scene>
-        <!--Meu Feed-->
+        <!--Favoritos-->
         <scene sceneID="kMR-aw-raS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pfJ-0C-wXq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Meu Feed" image="book-star-7" id="SOT-Rv-63I"/>
+                    <tabBarItem key="tabBarItem" title="Favoritos" image="book-star-7" id="SOT-Rv-63I"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2xF-ML-v2H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -660,10 +660,10 @@
         <image name="list-simple-7" width="30" height="30"/>
         <image name="no_image" width="1092" height="690"/>
         <image name="palmeiras" width="200" height="200"/>
-        <image name="star-fill" width="40" height="40"/>
+        <image name="star-fill" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gdF-YZ-QBi"/>
+        <segue reference="bBc-gF-vES"/>
         <segue reference="dDg-a9-FaZ"/>
     </inferredMetricsTieBreakers>
 </document>
